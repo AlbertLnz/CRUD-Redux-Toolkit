@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { v4 as uuid } from "uuid";
 import { addTask } from "../features/tasks/taskSlice";
 
 export const TaskForm = () => {
@@ -19,7 +20,7 @@ export const TaskForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addTask(task)); // Proxy->state ; action
+    dispatch(addTask({ ...task, id: uuid() })); // Proxy->state ; action
   };
 
   return (
