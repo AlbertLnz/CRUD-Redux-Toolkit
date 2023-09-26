@@ -1,12 +1,10 @@
-import { useSelector } from "react-redux";
+import { TaskList } from "./components/taskList";
 
 function App() {
-  const taskState = useSelector((state) => state.tasks);
-  console.log(taskState);
-
   return (
     <>
       <h1>Hello World!</h1>
+      <TaskList />
     </>
   );
 }
