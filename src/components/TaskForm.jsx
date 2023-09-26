@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTask } from "../features/tasks/taskSlice";
 
 export const TaskForm = () => {
+  const dispatch = useDispatch();
+
   const [task, setTask] = useState({
     title: "",
     description: "",
@@ -15,7 +19,7 @@ export const TaskForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(task);
+    dispatch(addTask(task)); // Proxy->state ; action
   };
 
   return (
