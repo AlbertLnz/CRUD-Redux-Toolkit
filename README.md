@@ -1,8 +1,16 @@
-# React + Vite
+# CRUD Redux
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple app that creates a list of tasks, allowing you to perform the principal actions:
+ - Create --> Create tasks through a form.
+ - Read --> List tasks through cards.
+ - Update --> Edit tasks through the same form used for creation, but using useParams() hook from react-router-dom
+ - Delete --> Delete a task.
 
-Currently, two official plugins are available:
+## Demo
+https://crud-redux-toolkit-alr.netlify.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tecnologies used:
+REACT - TAILWIND CSS
+
+## Libraries used:
+redux-toolkit - react-router-dom - uuid
