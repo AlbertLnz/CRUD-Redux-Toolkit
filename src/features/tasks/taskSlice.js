@@ -28,10 +28,7 @@ const taskSlice = createSlice({
     },
     editTask: (state, action) => {
       const { id, title, description } = action.payload; // <- desestructurando los datos de action.payload
-      const foundTask = state.find((task) => (task.id = id));
-
-      console.log(action.payload);
-      console.log(foundTask);
+      const foundTask = state.find((task) => task.id === id);
 
       if (foundTask) {
         foundTask.title = title;
