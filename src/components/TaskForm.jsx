@@ -1,12 +1,14 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { v4 as uuid } from "uuid";
-import { addTask } from "../features/tasks/taskSlice";
+import { addTask, editTask } from "../features/tasks/taskSlice";
 
 export const TaskForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const params = useParams();
+  const tasks = useSelector((state) => state.tasks);
 
   const [task, setTask] = useState({
     title: "",
@@ -22,9 +24,20 @@ export const TaskForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addTask({ ...task, id: uuid() })); // Proxy->state ; action
+
+    if (params.id) {
+      dispatch(editTask(task));
+    } else {
+      dispatch(addTask({ ...task, id: uuid() })); // Proxy->state ; action
+    }
     navigate("/");
   };
+
+  useEffect(() => {
+    if (params.id) {
+      setTask(tasks.find((task) => task.id === params.id));
+    }
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -33,11 +46,13 @@ export const TaskForm = () => {
         type="text"
         placeholder="title"
         onChange={handleChange}
+        value={task.title}
       />
       <textarea
         name="description"
         placeholder="description"
         onChange={handleChange}
+        value={task.description}
       ></textarea>
       <button>Guardar</button>
     </form>
